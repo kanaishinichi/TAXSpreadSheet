@@ -2,7 +2,7 @@ TAXSpreadSheet
 ============
 A view that display cells like spreadsheet.
 
-![Screen Shot](http://flic.kr/p/h51caQ)
+<img src="http://farm6.staticflickr.com/5504/10547011846_9bf75761c6.jpg" width="333" height="500" alt="TAXSpreadSheet_SC_1">
 
 ##Requirements
 
