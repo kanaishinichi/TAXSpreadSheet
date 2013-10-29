@@ -34,7 +34,7 @@
 
 @end
 
-@interface TAXSpreadSheet : UIView
+@interface TAXSpreadSheet : UICollectionViewCell
 
 @property (nonatomic, weak) IBOutlet id <TAXSpreadSheetDataSource> dataSource;
 @property (nonatomic, weak) IBOutlet id <TAXSpreadSheetDelegate> delegate;
