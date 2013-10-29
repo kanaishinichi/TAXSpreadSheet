@@ -2,6 +2,8 @@ TAXSpreadSheet
 ============
 A view that display cells like spreadsheet.
 
+![Screen Shot](http://flic.kr/p/h51caQ)
+
 ##Requirements
 
  iOS 6.0 or later
