@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TAXSpreadSheet"
-  s.version      = "0.1.1"
+  s.version      = "0.1.0"
   s.summary      = "A view that display cells like spreadsheet."
 
   s.description  = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author       = { "Shinichi Kanai" => "shinichi.kanai@twelve-axis.com" }
   s.platform     = :ios, '6.0'
-  s.source       = { :git => "https://github.com/kanaishinichi/TAXSpreadSheet.git", :tag => "0.1.1" }
+  s.source       = { :git => "https://github.com/kanaishinichi/TAXSpreadSheet.git", :tag => "0.1.0" }
   s.source_files  = 'TAXSpreadSheet/**/*.{h,m}'
   s.requires_arc = true
 end
