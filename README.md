@@ -6,13 +6,13 @@ A view that display cells like spreadsheet.
 
 ##Requirements
 
- iOS 6.0 or later
+iOS 6.0 or later
 
 ##Installation
 via CocoaPods
 
 ```Podfile
-pod 'TAXSpreadSheet'
+pod 'TAXSpreadSheet', :git => 'https://github.com/kanaishinichi/TAXSpreadSheet.git'
 ```
 
 ##Usage
