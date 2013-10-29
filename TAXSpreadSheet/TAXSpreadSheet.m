@@ -60,7 +60,7 @@ const CGFloat defaultSpacing = 0.0;
 
     self.collectionView = collectionView;
     
-    [self addSubview:collectionView];
+    [self.contentView addSubview:collectionView];
 }
 
 # pragma mark - Properties of UICollectionView
