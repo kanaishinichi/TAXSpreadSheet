@@ -12,7 +12,7 @@ iOS 6.0 or later
 via CocoaPods
 
 ```Podfile
-pod 'TAXSpreadSheet', :git => 'https://github.com/kanaishinichi/TAXSpreadSheet.git'
+pod 'TAXSpreadSheet'
 ```
 
 ##Usage
