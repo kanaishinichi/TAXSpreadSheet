@@ -35,6 +35,11 @@ const CGFloat defaultSpacing = 0.0;
     [self p_init];
 }
 
+- (void)layoutSubviews
+{
+    [_layout invalidateLayout];
+}
+
 - (void)p_init
 {
     // Initialization code
