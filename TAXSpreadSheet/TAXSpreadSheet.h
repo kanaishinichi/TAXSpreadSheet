@@ -76,18 +76,41 @@
 - (id)dequeueReusableInterRowViewWithIdentifier:(NSString *)identifier belowRow:(NSUInteger)row;
 - (id)dequeueReusableInterColumnViewWithIdentifier:(NSString *)identifier afterColumn:(NSUInteger)column;
 
-- (NSIndexPath *)indexPathForCell:(UICollectionViewCell *)cell;
-
 # pragma mark - UICollectionView/Layout compatible methods.
 
-- (void)reloadData;
 - (void)invalidateLayout;
 
-// Inserting, Moving, and Deleting Rows
+# pragma mark Reloading Content
+- (void)reloadData;
+- (void)reloadRows:(NSIndexSet *)rows;
+- (void)reloadColumns:(NSIndexSet *)columns;
+
+# pragma mark Inserting, Moving, and Deleting Rows
 - (void)insertRows:(NSIndexSet *)rows;
 - (void)moveRow:(NSInteger)fromRow toRow:(NSInteger)toRow;
 - (void)deleteRows:(NSIndexSet *)rows;
 
-// Inserting, Moving, and Deleting Columns
+# pragma mark Inserting, Moving, and Deleting Columns
 - (void)insertColumns:(NSIndexSet *)columns;
+- (void)moveColumn:(NSUInteger)fromColumn toColumn:(NSUInteger)toColumn;
+- (void)deleteColumns:(NSIndexSet *)columns;
+
+# pragma mark Managing the Selection
+@property (nonatomic, assign) BOOL allowsSelection;
+@property (nonatomic, assign) BOOL allowsMultipleSelection;
+- (NSArray *)indexPathsForSelectedCells;
+- (void)selectCellAtRow:(NSUInteger)row column:(NSUInteger)column animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition;
+
+# pragma mark Locating Cells in the Spread Sheet
+- (NSIndexPath *)indexPathForCellAtPoint:(CGPoint)point;
+- (NSArray *)indexPathsForVisibleCells;
+- (NSIndexPath *)indexPathForCell:(UICollectionViewCell *)cell;
+- (UICollectionViewCell *)cellAtRow:(NSUInteger)row column:(NSUInteger)column;
+
+# pragma mark Scrolling a Cell Into View
+- (void)scrollToCellAtRow:(NSUInteger)row column:(NSUInteger)column atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated;
+
+# pragma mark Animating Multiple Changes to the Spread Sheet
+- (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion;
+
 @end

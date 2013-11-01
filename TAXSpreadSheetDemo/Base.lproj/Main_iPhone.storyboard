@@ -41,7 +41,7 @@
                                             <action selector="expandColumnDidTap:" destination="vXZ-lx-hvc" id="xig-P2-k2H"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="InsC" id="uwf-l2-sXW">
+                                    <barButtonItem title="Col" id="uwf-l2-sXW">
                                         <connections>
                                             <action selector="insertColumnDidTap:" destination="vXZ-lx-hvc" id="zoK-3B-8bB"/>
                                         </connections>

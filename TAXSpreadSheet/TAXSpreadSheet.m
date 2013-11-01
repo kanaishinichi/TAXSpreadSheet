@@ -69,6 +69,23 @@ const CGFloat defaultSpacing = 0.0;
     [self addSubview:collectionView];
 }
 
+- (NSArray *)p_indexPathsOfColumns:(NSIndexSet *)columns
+{
+    NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:self.numberOfRows * columns.count];
+    
+    NSUInteger column;
+    column = columns.firstIndex;
+    
+    while (column != NSNotFound) {
+        for (NSUInteger row = 0; row < self.numberOfRows; row++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:column inSection:row];
+            [indexPaths addObject:indexPath];
+        }
+        column = [columns indexGreaterThanIndex:column];
+    }
+    return indexPaths;
+}
+
 # pragma mark - Properties of UICollectionView
 
 - (void)setDelegate:(id<TAXSpreadSheetDelegate>)delegate
@@ -191,11 +208,6 @@ const CGFloat defaultSpacing = 0.0;
     return interRowView;
 }
 
-- (NSIndexPath *)indexPathForCell:(UICollectionViewCell *)cell
-{
-    return [_collectionView indexPathForCell:cell];
-}
-
 # pragma mark - CollectionView DataSource
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -287,17 +299,31 @@ const CGFloat defaultSpacing = 0.0;
     }
 }
 
-# pragma mark - UICollectionView compatible methods.
+# pragma mark - UICollectionView/Layout compatible methods.
+
+- (void)invalidateLayout
+{
+    [_layout invalidateLayout];
+}
+
+# pragma mark Reloading Content
 
 - (void)reloadData
 {
     [_collectionView reloadData];
 }
 
-- (void)invalidateLayout
+- (void)reloadRows:(NSIndexSet *)rows
 {
-    [_layout invalidateLayout];
+    [_collectionView reloadSections:rows];
 }
+
+- (void)reloadColumns:(NSIndexSet *)columns
+{
+    [_collectionView reloadItemsAtIndexPaths:[self p_indexPathsOfColumns:columns]];
+}
+
+# pragma mark Inserting, Moving, and Deleting Rows
 
 - (void)insertRows:(NSIndexSet *)rows
 {
@@ -314,21 +340,90 @@ const CGFloat defaultSpacing = 0.0;
     [_collectionView deleteSections:rows];
 }
 
+# pragma mark Inserting, Moving, and Deleting Columns
+
 - (void)insertColumns:(NSIndexSet *)columns
 {
-    NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:self.numberOfRows * columns.count];
+    [_collectionView insertItemsAtIndexPaths:[self p_indexPathsOfColumns:columns]];
+}
 
-    NSUInteger column;
-    column = columns.firstIndex;
-    
-    while (column != NSNotFound) {
+- (void)moveColumn:(NSUInteger)fromColumn toColumn:(NSUInteger)toColumn
+{
+    [_collectionView performBatchUpdates:^{
         for (NSUInteger row = 0; row < self.numberOfRows; row++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:column inSection:row];
-            [indexPaths addObject:indexPath];
+            NSIndexPath *fromIndexPath = [NSIndexPath indexPathForItem:fromColumn inSection:row];
+            NSIndexPath *toIndexPath = [NSIndexPath indexPathForItem:toColumn inSection:row];
+            [_collectionView moveItemAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
         }
-        column = [columns indexGreaterThanIndex:column];
-    }
-    [_collectionView insertItemsAtIndexPaths:indexPaths];
+    } completion:nil];
+}
+
+- (void)deleteColumns:(NSIndexSet *)columns
+{
+    [_collectionView deleteItemsAtIndexPaths:[self p_indexPathsOfColumns:columns]];
+}
+
+# pragma mark Managing the Selection
+
+- (void)setAllowsSelection:(BOOL)allowsSelection
+{
+    _allowsSelection = allowsSelection;
+    _collectionView.allowsSelection = allowsSelection;
+}
+
+- (void)setAllowsMultipleSelection:(BOOL)allowsMultipleSelection
+{
+    _allowsMultipleSelection = allowsMultipleSelection;
+    _collectionView.allowsMultipleSelection = allowsMultipleSelection;
+}
+
+- (NSArray *)indexPathsForSelectedCells
+{
+    return [_collectionView indexPathsForSelectedItems];
+}
+
+- (void)selectCellAtRow:(NSUInteger)row column:(NSUInteger)column animated:(BOOL)animated scrollPosition:(UICollectionViewScrollPosition)scrollPosition
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:column inSection:row];
+    [_collectionView selectItemAtIndexPath:indexPath animated:animated scrollPosition:scrollPosition];
+}
+
+# pragma mark Locating Cells in the Spread Sheet
+
+- (NSIndexPath *)indexPathForCellAtPoint:(CGPoint)point
+{
+    return [_collectionView indexPathForItemAtPoint:point];
+}
+
+- (NSArray *)indexPathsForVisibleCells
+{
+    return [_collectionView indexPathsForVisibleItems];
+}
+
+- (NSIndexPath *)indexPathForCell:(UICollectionViewCell *)cell
+{
+    return [_collectionView indexPathForCell:cell];
+}
+
+- (UICollectionViewCell *)cellAtRow:(NSUInteger)row column:(NSUInteger)column
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:column inSection:row];
+    return [_collectionView cellForItemAtIndexPath:indexPath];
+}
+
+# pragma mark Scrolling a Cell Into View
+
+- (void)scrollToCellAtRow:(NSUInteger)row column:(NSUInteger)column atScrollPosition:(UICollectionViewScrollPosition)scrollPosition animated:(BOOL)animated
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:column inSection:row];
+    [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
+}
+
+# pragma mark Animating Multiple Changes to the Spread Sheet
+
+- (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion
+{
+    [_collectionView performBatchUpdates:updates completion:completion];
 }
 
 @end
