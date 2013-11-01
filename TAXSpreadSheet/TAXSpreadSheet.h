@@ -78,4 +78,16 @@
 
 - (NSIndexPath *)indexPathForCell:(UICollectionViewCell *)cell;
 
+# pragma mark - UICollectionView/Layout compatible methods.
+
+- (void)reloadData;
+- (void)invalidateLayout;
+
+// Inserting, Moving, and Deleting Rows
+- (void)insertRows:(NSIndexSet *)rows;
+- (void)moveRow:(NSInteger)fromRow toRow:(NSInteger)toRow;
+- (void)deleteRows:(NSIndexSet *)rows;
+
+// Inserting, Moving, and Deleting Columns
+- (void)insertColumns:(NSIndexSet *)columns;
 @end

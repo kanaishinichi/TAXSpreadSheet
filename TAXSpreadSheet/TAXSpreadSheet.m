@@ -37,6 +37,7 @@ const CGFloat defaultSpacing = 0.0;
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     [_layout invalidateLayout];
 }
 
@@ -284,6 +285,50 @@ const CGFloat defaultSpacing = 0.0;
     } else {
         return self.interRowSpacing;
     }
+}
+
+# pragma mark - UICollectionView compatible methods.
+
+- (void)reloadData
+{
+    [_collectionView reloadData];
+}
+
+- (void)invalidateLayout
+{
+    [_layout invalidateLayout];
+}
+
+- (void)insertRows:(NSIndexSet *)rows
+{
+    [_collectionView insertSections:rows];
+}
+
+- (void)moveRow:(NSInteger)fromRow toRow:(NSInteger)toRow
+{
+    [_collectionView moveSection:fromRow toSection:toRow];
+}
+
+- (void)deleteRows:(NSIndexSet *)rows
+{
+    [_collectionView deleteSections:rows];
+}
+
+- (void)insertColumns:(NSIndexSet *)columns
+{
+    NSMutableArray *indexPaths = [NSMutableArray arrayWithCapacity:self.numberOfRows * columns.count];
+
+    NSUInteger column;
+    column = columns.firstIndex;
+    
+    while (column != NSNotFound) {
+        for (NSUInteger row = 0; row < self.numberOfRows; row++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:column inSection:row];
+            [indexPaths addObject:indexPath];
+        }
+        column = [columns indexGreaterThanIndex:column];
+    }
+    [_collectionView insertItemsAtIndexPaths:indexPaths];
 }
 
 @end

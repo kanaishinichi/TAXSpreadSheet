@@ -11,20 +11,28 @@
 #import "TAXLabelCell.h"
 
 @interface ViewController () <TAXSpreadSheetDataSource, TAXSpreadSheetDelegate>
-
+{
+    IBOutlet TAXSpreadSheet *_spreadSheet;
+}
+@property (nonatomic, assign) NSUInteger numberOfRows, numberOfColumns;
+@property (nonatomic, assign) CGFloat widthOfColumn0;
+- (IBAction)addRowDidTap:(id)sender;
+- (IBAction)expandColumnDidTap:(id)sender;
+- (IBAction)moveDidTap:(id)sender;
+- (IBAction)deleteDidTap:(id)sender;
+- (IBAction)insertColumnDidTap:(id)sender;
 @end
 
 static NSString * const CellIdentifier = @"Cell";
 
 @implementation ViewController
-{
-    IBOutlet TAXSpreadSheet *_spreadSheet;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.numberOfRows = 20;
+    self.numberOfColumns = 10;
+    self.widthOfColumn0 = 20;
     _spreadSheet.interColumnSpacing = 1.0;
     _spreadSheet.interRowSpacing = 1.0;
     [_spreadSheet registerClass:[TAXLabelCell class] forCellWithReuseIdentifier:CellIdentifier];
@@ -40,12 +48,12 @@ static NSString * const CellIdentifier = @"Cell";
     
 - (NSUInteger)numberOfColumnsInSpreadSheet:(TAXSpreadSheet *)spreadSheet
 {
-    return 10;
+    return _numberOfColumns;
 }
     
 - (NSUInteger)numberOfRowsInSpreadSheet:(TAXSpreadSheet *)spreadSheet
 {
-    return 20;
+    return _numberOfRows;
 }
     
 - (UICollectionViewCell *)spreadSheet:(TAXSpreadSheet *)spreadSheet cellAtRow:(NSUInteger)row column:(NSUInteger)column
@@ -55,6 +63,53 @@ static NSString * const CellIdentifier = @"Cell";
     cell.textLabel.text = [NSString stringWithFormat:@"%d - %d", row, column];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
+}
+
+# pragma mark - TAXSpreadSheet Delegate
+
+- (CGFloat)spreadSheet:(TAXSpreadSheet *)spreadSheet widthAtColumn:(NSUInteger)column
+{
+    if (column == 0) {
+        return _widthOfColumn0;
+    } else return NSNotFound;
+}
+
+# pragma mark - Handler
+
+- (IBAction)addRowDidTap:(id)sender
+{
+    self.numberOfRows += 1;
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    [_spreadSheet insertRows:indexSet];
+}
+
+- (IBAction)expandColumnDidTap:(id)sender
+{
+    self.widthOfColumn0 += 10;
+    [_spreadSheet invalidateLayout];
+}
+
+- (IBAction)moveDidTap:(id)sender
+{
+    [_spreadSheet moveRow:3 toRow:0];
+}
+
+- (IBAction)deleteDidTap:(id)sender
+{
+    self.numberOfRows -= 1;
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+    [_spreadSheet deleteRows:indexSet];
+}
+
+- (IBAction)insertColumnDidTap:(id)sender
+{
+    NSRange range;
+    range.location = 2;
+    range.length = 2;
+    self.numberOfColumns += range.length;
+    
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+    [_spreadSheet insertColumns:indexSet];
 }
 
 @end

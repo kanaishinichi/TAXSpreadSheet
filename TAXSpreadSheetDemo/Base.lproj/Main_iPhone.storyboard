@@ -17,8 +17,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CqH-cm-7g6">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Add" id="3rJ-6H-OMZ">
+                                        <connections>
+                                            <action selector="addRowDidTap:" destination="vXZ-lx-hvc" id="oCH-dI-06a"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Move" id="oOD-ku-WSI">
+                                        <connections>
+                                            <action selector="moveDidTap:" destination="vXZ-lx-hvc" id="xRt-Mu-aR1"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Delete" id="Rjw-mI-K0e">
+                                        <connections>
+                                            <action selector="deleteDidTap:" destination="vXZ-lx-hvc" id="rZC-GV-Avx"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Expand" id="uFM-jM-Hdk">
+                                        <connections>
+                                            <action selector="expandColumnDidTap:" destination="vXZ-lx-hvc" id="xig-P2-k2H"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="InsC" id="uwf-l2-sXW">
+                                        <connections>
+                                            <action selector="insertColumnDidTap:" destination="vXZ-lx-hvc" id="zoK-3B-8bB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJw-yX-fyj" customClass="TAXSpreadSheet">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="m5H-Az-Nrn"/>
@@ -28,18 +59,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="PJw-yX-fyj" secondAttribute="bottom" id="1na-aj-mNC"/>
                             <constraint firstItem="PJw-yX-fyj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="9lY-RP-h0x"/>
                             <constraint firstAttribute="trailing" secondItem="PJw-yX-fyj" secondAttribute="trailing" id="UIa-eQ-EMp"/>
+                            <constraint firstItem="CqH-cm-7g6" firstAttribute="top" secondItem="PJw-yX-fyj" secondAttribute="bottom" id="Wwj-zI-Mwg"/>
                             <constraint firstItem="PJw-yX-fyj" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="ZQ9-WN-rr5"/>
+                            <constraint firstItem="CqH-cm-7g6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ilo-ph-AS5"/>
+                            <constraint firstAttribute="trailing" secondItem="CqH-cm-7g6" secondAttribute="trailing" id="mLb-Vm-88i"/>
+                            <constraint firstAttribute="bottom" secondItem="CqH-cm-7g6" secondAttribute="bottom" id="pLV-1s-20r"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Bxl-CB-bJy"/>
                     <connections>
                         <outlet property="_spreadSheet" destination="PJw-yX-fyj" id="Z9R-oW-vj0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1475" y="32"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
