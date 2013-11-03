@@ -92,7 +92,7 @@
 
 # pragma mark Inserting, Moving, and Deleting Columns
 - (void)insertColumns:(NSIndexSet *)columns;
-- (void)moveColumn:(NSUInteger)fromColumn toColumn:(NSUInteger)toColumn;
+- (void)moveColumn:(NSInteger)fromColumn toColumn:(NSInteger)toColumn;
 - (void)deleteColumns:(NSIndexSet *)columns;
 
 # pragma mark Managing the Selection

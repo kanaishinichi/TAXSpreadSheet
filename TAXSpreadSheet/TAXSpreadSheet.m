@@ -347,7 +347,7 @@ const CGFloat defaultSpacing = 0.0;
     [_collectionView insertItemsAtIndexPaths:[self p_indexPathsOfColumns:columns]];
 }
 
-- (void)moveColumn:(NSUInteger)fromColumn toColumn:(NSUInteger)toColumn
+- (void)moveColumn:(NSInteger)fromColumn toColumn:(NSInteger)toColumn
 {
     [_collectionView performBatchUpdates:^{
         for (NSUInteger row = 0; row < self.numberOfRows; row++) {
