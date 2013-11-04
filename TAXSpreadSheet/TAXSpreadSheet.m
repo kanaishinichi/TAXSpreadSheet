@@ -38,6 +38,7 @@ const CGFloat defaultSpacing = 0.0;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    _collectionView.frame = UIEdgeInsetsInsetRect(self.bounds, _insets);
     [_layout invalidateLayout];
 }
 
@@ -127,7 +128,8 @@ const CGFloat defaultSpacing = 0.0;
 - (void)setInsets:(UIEdgeInsets)insets
 {
     _insets = insets;
-    self.layout.insets = insets;
+//    self.layout.insets = insets;
+    [self.layout invalidateLayout];
 }
 
 - (void)setInterColumnSpacing:(CGFloat)interColumnSpacing
