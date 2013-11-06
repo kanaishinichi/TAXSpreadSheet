@@ -90,3 +90,10 @@ In case of not using view, return nil.
 ##License
 
 MIT License
+
+##Change Log
+###0.2.0
+- [Add] UICollectionView/Layout compatible methods.
+- [Add] Forwarding UICollectionViewDelegate methods.
+- [Add] backgoundView property.
+- [Fix] backgroundColor property.
