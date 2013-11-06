@@ -60,14 +60,14 @@ const CGFloat defaultSpacing = 0.0;
     collectionView.dataSource = self;
     collectionView.delegate = self.delegate;
     collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
+
     // Register Dummy View
     [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:TAXSpreadSheetLayoutInterColumnView withReuseIdentifier:EmptyViewIdentifier];
     [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:TAXSpreadSheetLayoutInterRowView withReuseIdentifier:EmptyViewIdentifier];
 
     self.collectionView = collectionView;
     
-    [self addSubview:collectionView];
+    [self.contentView addSubview:collectionView];
 }
 
 - (NSArray *)p_indexPathsOfColumns:(NSIndexSet *)columns
@@ -142,6 +142,26 @@ const CGFloat defaultSpacing = 0.0;
 {
     _interRowSpacing = interRowSpacing;
     self.layout.interRowSpacing = interRowSpacing;
+}
+
+- (UIColor *)backgroundColor
+{
+    return _collectionView.backgroundColor;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    _collectionView.backgroundColor = backgroundColor;
+}
+
+- (UIView *)backgroundView
+{
+    return _collectionView.backgroundView;
+}
+
+- (void)setBackgroundView:(UIView *)backgroundView
+{
+    _collectionView.backgroundView = backgroundView;
 }
 
 # pragma mark - Register Classes
