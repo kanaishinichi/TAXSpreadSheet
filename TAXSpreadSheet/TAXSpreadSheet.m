@@ -67,7 +67,7 @@ const CGFloat defaultSpacing = 0.0;
 
     self.collectionView = collectionView;
     
-    [self.contentView addSubview:collectionView];
+    [self addSubview:collectionView];
 }
 
 - (NSArray *)p_indexPathsOfColumns:(NSIndexSet *)columns
