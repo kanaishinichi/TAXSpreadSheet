@@ -16,10 +16,10 @@
 }
 @property (nonatomic, assign) NSUInteger numberOfRows, numberOfColumns;
 @property (nonatomic, assign) CGFloat widthOfColumn0;
-- (IBAction)addRowDidTap:(id)sender;
+- (IBAction)insertRowDidTap:(id)sender;
+- (IBAction)deleteRowDidTap:(id)sender;
+- (IBAction)moveRowDidTap:(id)sender;
 - (IBAction)expandColumnDidTap:(id)sender;
-- (IBAction)moveDidTap:(id)sender;
-- (IBAction)deleteDidTap:(id)sender;
 - (IBAction)insertColumnDidTap:(id)sender;
 @end
 
@@ -76,7 +76,7 @@ static NSString * const CellIdentifier = @"Cell";
 
 # pragma mark - Handler
 
-- (IBAction)addRowDidTap:(id)sender
+- (IBAction)insertRowDidTap:(id)sender
 {
     self.numberOfRows += 1;
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
@@ -89,12 +89,12 @@ static NSString * const CellIdentifier = @"Cell";
     [_spreadSheet invalidateLayout];
 }
 
-- (IBAction)moveDidTap:(id)sender
+- (IBAction)moveRowDidTap:(id)sender
 {
     [_spreadSheet moveRow:3 toRow:0];
 }
 
-- (IBAction)deleteDidTap:(id)sender
+- (IBAction)deleteRowDidTap:(id)sender
 {
     self.numberOfRows -= 1;
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];

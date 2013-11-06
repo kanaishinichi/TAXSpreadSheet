@@ -21,19 +21,19 @@
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Add" id="3rJ-6H-OMZ">
+                                    <barButtonItem title="+Row" id="3rJ-6H-OMZ">
                                         <connections>
-                                            <action selector="addRowDidTap:" destination="vXZ-lx-hvc" id="oCH-dI-06a"/>
+                                            <action selector="insertRowDidTap:" destination="vXZ-lx-hvc" id="Q1Y-Zg-kLZ"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Move" id="oOD-ku-WSI">
+                                    <barButtonItem title="-Row" id="Rjw-mI-K0e">
                                         <connections>
-                                            <action selector="moveDidTap:" destination="vXZ-lx-hvc" id="xRt-Mu-aR1"/>
+                                            <action selector="deleteRowDidTap:" destination="vXZ-lx-hvc" id="yv6-CO-e60"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Delete" id="Rjw-mI-K0e">
+                                    <barButtonItem title="MoveRow" id="oOD-ku-WSI">
                                         <connections>
-                                            <action selector="deleteDidTap:" destination="vXZ-lx-hvc" id="rZC-GV-Avx"/>
+                                            <action selector="moveRowDidTap:" destination="vXZ-lx-hvc" id="Wmd-zX-XI6"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Expand" id="uFM-jM-Hdk">
@@ -41,7 +41,7 @@
                                             <action selector="expandColumnDidTap:" destination="vXZ-lx-hvc" id="xig-P2-k2H"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Col" id="uwf-l2-sXW">
+                                    <barButtonItem title="+Col" id="uwf-l2-sXW">
                                         <connections>
                                             <action selector="insertColumnDidTap:" destination="vXZ-lx-hvc" id="zoK-3B-8bB"/>
                                         </connections>

@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="eH4-zw-kAk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="YpB-Pg-sDc">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="eH4-zw-kAk" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WTE-lJ-6HW">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Xnz-r9-ecL"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wZX-VR-VwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3984" y="-219"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -32,28 +17,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mjq-SM-dgf" customClass="TAXSpreadSheet">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tid-cy-jhQ">
+                                <rect key="frame" x="0.0" y="980" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="+Row" id="poO-FP-Ezd">
+                                        <connections>
+                                            <action selector="insertRowDidTap:" destination="BYZ-38-t0r" id="xgy-FW-MUb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="-Row" id="vLU-TW-Iya">
+                                        <connections>
+                                            <action selector="deleteRowDidTap:" destination="BYZ-38-t0r" id="OFs-vB-eni"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Move Row" id="2hZ-EB-4jC">
+                                        <connections>
+                                            <action selector="moveRowDidTap:" destination="BYZ-38-t0r" id="yNG-8w-ayB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="03C-dA-Qap"/>
+                                    <barButtonItem title="Expand Column" id="lwV-lr-haS">
+                                        <connections>
+                                            <action selector="expandColumnDidTap:" destination="BYZ-38-t0r" id="q0d-dC-MQm"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="+Column" id="VcY-v3-bdG">
+                                        <connections>
+                                            <action selector="insertColumnDidTap:" destination="BYZ-38-t0r" id="ccd-JV-HmU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBJ-BV-iNW" customClass="TAXSpreadSheet">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="BWy-wL-jmb"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="dTK-Yo-Z6a"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Snm-DO-erd"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="FO4-0Z-QuR"/>
                                 </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Mjq-SM-dgf" secondAttribute="bottom" id="Egs-jI-tRe"/>
-                            <constraint firstItem="Mjq-SM-dgf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WIz-O5-tBY"/>
-                            <constraint firstItem="Mjq-SM-dgf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tq4-sB-tWh"/>
-                            <constraint firstAttribute="trailing" secondItem="Mjq-SM-dgf" secondAttribute="trailing" id="vZF-Jp-Wok"/>
+                            <constraint firstItem="iBJ-BV-iNW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5MI-Kp-3Io"/>
+                            <constraint firstItem="Tid-cy-jhQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="EPX-AL-vew"/>
+                            <constraint firstAttribute="bottom" secondItem="Tid-cy-jhQ" secondAttribute="bottom" id="Gdd-eq-mD7"/>
+                            <constraint firstItem="iBJ-BV-iNW" firstAttribute="trailing" secondItem="Tid-cy-jhQ" secondAttribute="trailing" id="I6T-zm-4Qp"/>
+                            <constraint firstItem="iBJ-BV-iNW" firstAttribute="leading" secondItem="Tid-cy-jhQ" secondAttribute="leading" id="Q3i-kh-Rkv"/>
+                            <constraint firstAttribute="trailing" secondItem="Tid-cy-jhQ" secondAttribute="trailing" id="hRB-Fc-ORt"/>
+                            <constraint firstItem="iBJ-BV-iNW" firstAttribute="bottom" secondItem="Tid-cy-jhQ" secondAttribute="top" id="heS-t3-Oxc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5Vp-k6-kNg">
-                        <barButtonItem key="rightBarButtonItem" title="Add Row" id="6kf-Oc-Pkc"/>
-                    </navigationItem>
                     <connections>
-                        <outlet property="_spreadSheet" destination="Mjq-SM-dgf" id="GmB-1D-06J"/>
+                        <outlet property="_spreadSheet" destination="iBJ-BV-iNW" id="DOB-aa-L8r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
