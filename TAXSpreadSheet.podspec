@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TAXSpreadSheet"
-  s.version      = "0.2.0"
+  s.version      = "0.2.1"
   s.summary      = "A view that display cells like spreadsheet."
   s.homepage     = "https://github.com/kanaishinichi/TAXSpreadSheet"
   s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }

@@ -87,6 +87,13 @@ const CGFloat defaultSpacing = 0.0;
     return indexPaths;
 }
 
+# pragma mark -
+
+- (CGSize)intrinsicContentSize
+{
+    return _layout.collectionViewContentSize;
+}
+
 # pragma mark - Properties of UICollectionView
 
 - (void)setDelegate:(id<TAXSpreadSheetDelegate>)delegate
