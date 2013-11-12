@@ -72,15 +72,18 @@ NSString * const TAXSpreadSheetLayoutInterRowView = @"InterRowView";
 
 - (void)prepareLayout
 {
-    self.leadingEdges = [[NSMutableArray alloc] initWithCapacity:self.numberOfColumns];
-    self.trailingEdges = [[NSMutableArray alloc] initWithCapacity:self.numberOfColumns];
-    self.topEdges = [[NSMutableArray alloc] initWithCapacity:self.numberOfRows];
-    self.bottomEdges = [[NSMutableArray alloc] initWithCapacity:self.numberOfRows];
+    NSUInteger rows = self.numberOfRows;
+    NSUInteger columns = self.numberOfColumns;
+    
+    self.leadingEdges = [NSMutableArray arrayWithCapacity:columns];
+    self.trailingEdges = [NSMutableArray arrayWithCapacity:columns];
+    self.topEdges = [NSMutableArray arrayWithCapacity:rows];
+    self.bottomEdges = [NSMutableArray arrayWithCapacity:rows];
     _leadingEdges[0] = @0.0;
     _topEdges[0] = @0.0;
     
     // X axis
-    for (NSUInteger idx = 0; idx < self.numberOfColumns; idx ++) {
+    for (NSUInteger idx = 0; idx < columns; idx ++) {
         CGFloat previousLeadingEdge = [_leadingEdges[idx] doubleValue];
         CGFloat trailingEdge = previousLeadingEdge + [self p_widthAtColumn:idx];
         CGFloat leadingEdge = trailingEdge + [self p_spacingAfterColumn:idx];
@@ -89,7 +92,7 @@ NSString * const TAXSpreadSheetLayoutInterRowView = @"InterRowView";
     }
     
     // Y axis
-    for (NSUInteger idx = 0; idx < self.numberOfRows; idx++) {
+    for (NSUInteger idx = 0; idx < rows; idx++) {
         CGFloat previousTopEdge = [_topEdges[idx] doubleValue];
         CGFloat bottomEdge = previousTopEdge + [self p_heightAtRow:idx];
         CGFloat topEdge = bottomEdge+ [self p_spacingBelowRow:idx];
@@ -123,10 +126,12 @@ NSString * const TAXSpreadSheetLayoutInterRowView = @"InterRowView";
 
 -(NSArray*)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    NSMutableArray* attributesArray = [NSMutableArray array];
+    NSInteger rows = self.numberOfRows;
+    NSInteger columns = self.numberOfColumns;
     
+    NSMutableArray* attributesArray = [NSMutableArray array];
     // Items
-    for (NSInteger row = 0 ; row < self.numberOfRows; row ++) {
+    for (NSInteger row = 0 ; row < rows; row ++) {
         for (NSInteger column = 0; column < self.numberOfColumns; column ++) {
             NSIndexPath* indexPath = [NSIndexPath indexPathForItem:column inSection:row];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
@@ -137,7 +142,7 @@ NSString * const TAXSpreadSheetLayoutInterRowView = @"InterRowView";
     }
     
     // InterColumnViews
-    for (NSInteger column = 0; column < self.numberOfColumns -1; column ++) {
+    for (NSInteger column = 0; column < columns -1; column ++) {
         NSIndexPath *columnPath = [NSIndexPath indexPathForItem:column inSection:0];
         UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:TAXSpreadSheetLayoutInterColumnView atIndexPath:columnPath];
         if (CGRectIntersectsRect(rect, attributes.frame)) {
@@ -146,7 +151,7 @@ NSString * const TAXSpreadSheetLayoutInterRowView = @"InterRowView";
     }
     
     // InterRowViews
-    for (NSInteger row = 0; row < self.numberOfRows -1; row ++) {
+    for (NSInteger row = 0; row < rows -1; row ++) {
         NSIndexPath *rowPath = [NSIndexPath indexPathForItem:0 inSection:row];
         UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:TAXSpreadSheetLayoutInterRowView atIndexPath:rowPath];
         if (CGRectIntersectsRect(rect, attributes.frame)) {
