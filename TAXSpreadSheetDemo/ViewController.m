@@ -60,7 +60,7 @@ static NSString * const CellIdentifier = @"Cell";
 {
     TAXLabelCell *cell = (TAXLabelCell *)[_spreadSheet dequeueReusableCellWithReuseIdentifier:CellIdentifier forRow:row column:column];
     cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.text = [NSString stringWithFormat:@"%d - %d", row, column];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld - %ld", (long)row, (long)column];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
@@ -91,14 +91,18 @@ static NSString * const CellIdentifier = @"Cell";
 
 - (IBAction)moveRowDidTap:(id)sender
 {
-    [_spreadSheet moveRow:3 toRow:0];
+    if (self.numberOfRows >= 4) {
+        [_spreadSheet moveRow:3 toRow:0];
+    }
 }
 
 - (IBAction)deleteRowDidTap:(id)sender
 {
-    self.numberOfRows -= 1;
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-    [_spreadSheet deleteRows:indexSet];
+    if (self.numberOfRows >= 1) {
+        self.numberOfRows -= 1;
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+        [_spreadSheet deleteRows:indexSet];
+    }
 }
 
 - (IBAction)insertColumnDidTap:(id)sender

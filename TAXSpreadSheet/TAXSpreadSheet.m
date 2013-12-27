@@ -280,12 +280,20 @@ const CGFloat defaultSpacing = 0.0;
 
 - (NSUInteger)numberOfRows
 {
-    return [self.dataSource numberOfRowsInSpreadSheet:self];
+    if ([self.dataSource numberOfColumnsInSpreadSheet:self] == 0) {
+        return 0;
+    } else {
+        return [self.dataSource numberOfRowsInSpreadSheet:self];
+    }
 }
 
 - (NSUInteger)numberOfColumns
 {
-    return [self.dataSource numberOfColumnsInSpreadSheet:self];
+    if ([self.dataSource numberOfRowsInSpreadSheet:self] == 0) {
+        return 0;
+    } else {
+        return [self.dataSource numberOfColumnsInSpreadSheet:self];
+    }
 }
 
 # pragma mark - SpreadSheetLayout Delegate
