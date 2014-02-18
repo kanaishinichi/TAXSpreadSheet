@@ -97,5 +97,6 @@ MIT License
 - [Add] Forwarding UICollectionViewDelegate methods.
 - [Add] backgoundView property.
 - [Fix] backgroundColor property.
+
 ###0.2.1
 - [Fix] Crash when number of rows or columns become zero.
