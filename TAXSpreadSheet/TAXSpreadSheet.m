@@ -366,16 +366,19 @@ const CGFloat defaultSpacing = 0.0;
 
 - (void)insertRows:(NSIndexSet *)rows
 {
+    [_layout invalidateLayout];
     [_collectionView insertSections:rows];
 }
 
 - (void)moveRow:(NSInteger)fromRow toRow:(NSInteger)toRow
 {
+    [_layout invalidateLayout];
     [_collectionView moveSection:fromRow toSection:toRow];
 }
 
 - (void)deleteRows:(NSIndexSet *)rows
 {
+    [_layout invalidateLayout];
     [_collectionView deleteSections:rows];
 }
 
@@ -383,11 +386,13 @@ const CGFloat defaultSpacing = 0.0;
 
 - (void)insertColumns:(NSIndexSet *)columns
 {
+    [_layout invalidateLayout];
     [_collectionView insertItemsAtIndexPaths:[self p_indexPathsOfColumns:columns]];
 }
 
 - (void)moveColumn:(NSInteger)fromColumn toColumn:(NSInteger)toColumn
 {
+    [_layout invalidateLayout];
     [_collectionView performBatchUpdates:^{
         for (NSUInteger row = 0; row < self.numberOfRows; row++) {
             NSIndexPath *fromIndexPath = [NSIndexPath indexPathForItem:fromColumn inSection:row];
@@ -399,6 +404,7 @@ const CGFloat defaultSpacing = 0.0;
 
 - (void)deleteColumns:(NSIndexSet *)columns
 {
+    [_layout invalidateLayout];
     [_collectionView deleteItemsAtIndexPaths:[self p_indexPathsOfColumns:columns]];
 }
 

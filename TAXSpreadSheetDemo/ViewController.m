@@ -30,8 +30,8 @@ static NSString * const CellIdentifier = @"Cell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.numberOfRows = 20;
-    self.numberOfColumns = 10;
+    self.numberOfRows = 2;
+    self.numberOfColumns = 2;
     self.widthOfColumn0 = 20;
     _spreadSheet.interColumnSpacing = 1.0;
     _spreadSheet.interRowSpacing = 1.0;
@@ -107,13 +107,25 @@ static NSString * const CellIdentifier = @"Cell";
 
 - (IBAction)insertColumnDidTap:(id)sender
 {
+    /*
     NSRange range;
     range.location = 2;
     range.length = 2;
     self.numberOfColumns += range.length;
     
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+     */
+    self.numberOfColumns++;
+    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
     [_spreadSheet insertColumns:indexSet];
+}
+
+- (IBAction)deleteColumnDidTap:(id)sender {
+    if (self.numberOfColumns >= 1) {
+        self.numberOfColumns --;
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+        [_spreadSheet deleteColumns:indexSet];
+    }
 }
 
 @end

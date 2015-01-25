@@ -72,9 +72,12 @@ NSString * const TAXSpreadSheetLayoutInterRowView = @"InterRowView";
 
 - (void)prepareLayout
 {
-    NSUInteger rows = self.numberOfRows;
-    NSUInteger columns = self.numberOfColumns;
+//    NSUInteger rows = self.numberOfRows;
+//    NSUInteger columns = self.numberOfColumns;
     
+    NSInteger rows = self.collectionView.numberOfSections;
+    NSInteger columns = (rows >0) ? [self.collectionView numberOfItemsInSection:0]:0;
+
     self.leadingEdges = [NSMutableArray arrayWithCapacity:columns];
     self.trailingEdges = [NSMutableArray arrayWithCapacity:columns];
     self.topEdges = [NSMutableArray arrayWithCapacity:rows];
@@ -126,13 +129,13 @@ NSString * const TAXSpreadSheetLayoutInterRowView = @"InterRowView";
 
 -(NSArray*)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    NSInteger rows = self.numberOfRows;
-    NSInteger columns = self.numberOfColumns;
+    NSInteger rows = self.collectionView.numberOfSections;
+    NSInteger columns = (rows >0) ? [self.collectionView numberOfItemsInSection:0]:0;
     
     NSMutableArray* attributesArray = [NSMutableArray array];
     // Items
     for (NSInteger row = 0 ; row < rows; row ++) {
-        for (NSInteger column = 0; column < self.numberOfColumns; column ++) {
+        for (NSInteger column = 0; column < columns; column ++) {
             NSIndexPath* indexPath = [NSIndexPath indexPathForItem:column inSection:row];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
             if (CGRectIntersectsRect(rect, attributes.frame)) {
@@ -143,7 +146,7 @@ NSString * const TAXSpreadSheetLayoutInterRowView = @"InterRowView";
     
     // InterColumnViews
     for (NSInteger column = 0; column < columns -1; column ++) {
-        NSIndexPath *columnPath = [NSIndexPath indexPathForItem:column inSection:0];
+        NSIndexPath *columnPath = [NSIndexPath indexPathForItem:column  inSection:0];
         UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:TAXSpreadSheetLayoutInterColumnView atIndexPath:columnPath];
         if (CGRectIntersectsRect(rect, attributes.frame)) {
             [attributesArray addObject:attributes];
