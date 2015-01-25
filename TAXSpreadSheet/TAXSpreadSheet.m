@@ -137,7 +137,6 @@ const CGFloat defaultSpacing = 0.0;
 - (void)setInsets:(UIEdgeInsets)insets
 {
     _insets = insets;
-//    self.layout.insets = insets;
     [self.layout invalidateLayout];
 }
 

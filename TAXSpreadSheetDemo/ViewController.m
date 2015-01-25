@@ -107,14 +107,6 @@ static NSString * const CellIdentifier = @"Cell";
 
 - (IBAction)insertColumnDidTap:(id)sender
 {
-    /*
-    NSRange range;
-    range.location = 2;
-    range.length = 2;
-    self.numberOfColumns += range.length;
-    
-    NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
-     */
     self.numberOfColumns++;
     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
     [_spreadSheet insertColumns:indexSet];

@@ -72,9 +72,6 @@ NSString * const TAXSpreadSheetLayoutInterRowView = @"InterRowView";
 
 - (void)prepareLayout
 {
-//    NSUInteger rows = self.numberOfRows;
-//    NSUInteger columns = self.numberOfColumns;
-    
     NSInteger rows = self.collectionView.numberOfSections;
     NSInteger columns = (rows >0) ? [self.collectionView numberOfItemsInSection:0]:0;
 
