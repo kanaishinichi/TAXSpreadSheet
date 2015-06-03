@@ -43,6 +43,9 @@
 @property (nonatomic, assign) BOOL showsHorizontalScrollIndicator, showsVerticalScrollIndicator;
 @property (nonatomic, assign) CGPoint contentOffset;
 
+// default YES
+@property (nonatomic, assign) BOOL bounces;
+
 /// Size of cells.
 /// Default: (50.0, 50.0)
 @property (nonatomic, assign) CGSize cellSize;
