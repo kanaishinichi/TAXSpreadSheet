@@ -56,12 +56,14 @@ const CGFloat defaultSpacing = 0.0;
     self.interColumnSpacing = defaultSpacing;
     self.interRowSpacing = defaultSpacing;
     self.backgroundColor = [UIColor clearColor];
+    self.bounces = YES;
 
     UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
     collectionView.dataSource = self;
     collectionView.delegate = self.delegate;
     collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     collectionView.backgroundColor = [UIColor clearColor];
+    collectionView.bounces = self.bounces;
 
     // Register Dummy View
     [collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:TAXSpreadSheetLayoutInterColumnView withReuseIdentifier:EmptyViewIdentifier];
@@ -176,6 +178,12 @@ const CGFloat defaultSpacing = 0.0;
 - (void)setBackgroundView:(UIView *)backgroundView
 {
     _collectionView.backgroundView = backgroundView;
+}
+
+- (void)setBounces:(BOOL)bounces
+{
+    _bounces = bounces;
+    _collectionView.bounces = _bounces;
 }
 
 # pragma mark - Register Classes
@@ -331,6 +339,7 @@ const CGFloat defaultSpacing = 0.0;
     } else {
         return self.interColumnSpacing;
     }
+    
 }
 
 - (CGFloat)bottomSpacingBelowRow:(NSUInteger)row

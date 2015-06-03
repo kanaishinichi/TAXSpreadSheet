@@ -44,6 +44,9 @@
 @property (nonatomic, assign) CGPoint contentOffset;
 @property (nonatomic) BOOL bounces;
 
+// default YES
+@property (nonatomic, assign) BOOL bounces;
+
 /// Size of cells.
 /// Default: (50.0, 50.0)
 @property (nonatomic, assign) CGSize cellSize;
