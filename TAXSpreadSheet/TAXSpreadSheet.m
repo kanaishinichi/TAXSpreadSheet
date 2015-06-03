@@ -128,6 +128,12 @@ const CGFloat defaultSpacing = 0.0;
     self.collectionView.contentOffset = contentOffset;
 }
 
+- (void)setBounces:(BOOL)bounces
+{
+    _bounces = bounces;
+    self.collectionView.bounces = bounces;
+}
+
 - (void)setCellSize:(CGSize)cellSize
 {
     _cellSize = cellSize;

@@ -36,6 +36,7 @@ static NSString * const CellIdentifier = @"Cell";
     _spreadSheet.interColumnSpacing = 1.0;
     _spreadSheet.interRowSpacing = 1.0;
     [_spreadSheet registerClass:[TAXLabelCell class] forCellWithReuseIdentifier:CellIdentifier];
+    _spreadSheet.bounces = NO;
 }
     
 - (void)didReceiveMemoryWarning
