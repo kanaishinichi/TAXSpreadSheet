@@ -479,4 +479,8 @@ const CGFloat defaultSpacing = 0.0;
     [_collectionView performBatchUpdates:updates completion:completion];
 }
 
+- (UICollectionView *)collectionView{
+    return _collectionView;
+}
+
 @end
