@@ -16,7 +16,7 @@
 - (NSUInteger)numberOfColumnsInSpreadSheet:(TAXSpreadSheet *)spreadSheet;
 
 // Getting views for cells.
-- (UICollectionViewCell*)spreadSheet:(TAXSpreadSheet *)spreadSheet cellAtRow:(NSUInteger)row column:(NSUInteger)column ;
+- (UICollectionViewCell*)spreadSheet:(TAXSpreadSheet *)spreadSheet cellAtRow:(NSUInteger)row column:(NSUInteger)column;
 @end
 
 @protocol TAXSpreadSheetDelegate <UICollectionViewDelegate>
@@ -115,5 +115,7 @@
 
 # pragma mark Animating Multiple Changes to the Spread Sheet
 - (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion;
+
+- (UICollectionView *)collectionView;
 
 @end
